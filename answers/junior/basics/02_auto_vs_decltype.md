@@ -32,13 +32,13 @@ decltype((x)) z = x;     // int& (скобки создают lvalue)
 
 // Полезное применение decltype в шаблонах
 template<typename T1, typename T2>
-auto add(T1 a, T2 b) -> decltype(a + b) {
+decltype(std::declval<T1>() + std::declval<T2>()) add(T1 a, T2 b) {
     return a + b;
 }
 
 // Использование decltype для определения типа возвращаемого значения
 template<typename Container>
-auto getFirst(Container& c) -> decltype(c.front()) {
+decltype(std::declval<Container>().front()) getFirst(Container& c) {
     return c.front();
 }
 ```
